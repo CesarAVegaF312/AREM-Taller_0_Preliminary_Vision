@@ -14,7 +14,7 @@ Antes de reunirse con el cliente, revise la [**Guía Paso a Paso: Preliminary y 
 
 ## 🏥 Caso base de referencia: Fundación Salud Viva
 
-Este es el ejemplo oficial de ficha de caracterización distribuido en `Material/Proyecto` del curso. Úselo como referencia de formato y de profundidad — no lo copie para su cliente real.
+Este es el ejemplo oficial de ficha de caracterización del curso, disponible en [`clase/Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf`](clase/Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf). Úselo como referencia de formato y de profundidad — no lo copie para su cliente real.
 
 **Contexto:** Fundación Salud Viva es una entidad de salud (atención domiciliaria y telemedicina) que quiere integrar su app móvil, su ERP y su plataforma de telemedicina, ampliar cobertura nacional y mejorar su cumplimiento normativo en el manejo de datos clínicos.
 
@@ -51,8 +51,9 @@ Antes del cierre del Corte 1, el equipo debe:
 taller-00-preliminary-vision/
 ├── README.md
 ├── clase/
-│   ├── guia_paso_a_paso_preliminary_vision.md   # Metodología y ejemplo guiado (Ficha + Visión)
-│   └── notas.md                                 # Ver plantillas/plantilla_notas.md
+│   ├── guia_paso_a_paso_preliminary_vision.md          # Metodología y ejemplo guiado (Ficha + Visión)
+│   ├── Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf   # Ficha oficial de referencia (Fundación Salud Viva)
+│   └── notas.md                                        # Ver plantillas/plantilla_notas.md
 ├── entrega/
 │   ├── ficha-caracterizacion.md                 # Ver plantillas/plantilla_ficha_caracterizacion.md
 │   ├── vision.md                                # Ver plantillas/plantilla_vision.md

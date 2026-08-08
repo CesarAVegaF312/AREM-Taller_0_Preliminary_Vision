@@ -18,7 +18,7 @@ El diagrama de ejemplo está escrito en [Mermaid](https://mermaid.js.org/) y se 
 
 ### A.2 Ejemplo guiado: Fundación Salud Viva
 
-> Ejemplo tomado del material oficial del curso (`Material/Proyecto/Ejemplo_Ficha_Caracterización_del_Cliente`).
+> Ejemplo tomado del material oficial del curso — disponible en este mismo repositorio como [`clase/Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf`](Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf).
 
 **I. Información general del negocio**
 - Empresa: Fundación Salud Viva — sector salud (atención domiciliaria y telemedicina)
