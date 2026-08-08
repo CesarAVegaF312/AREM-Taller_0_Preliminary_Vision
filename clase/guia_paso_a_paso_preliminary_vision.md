@@ -124,4 +124,29 @@ flowchart LR
 
 ---
 
+## Vista ArchiMate equivalente
+
+La Ficha y la Visión se traducen a la **capa de Motivación** de ArchiMate (ver la [Guía de Notación ArchiMate](https://github.com/CesarAVegaF312/AREM-ArchiMate/blob/main/guia_notacion_archimate.md) para el detalle completo): el cliente y su equipo directivo son **Stakeholders**, cada objetivo estratégico de la Ficha es un **Goal**, y cada restricción es una **Constraint**.
+
+```mermaid
+flowchart TD
+    stakeholder(["Directora de Operaciones - Fundación Salud Viva"])
+    driver(["Falta de integración app/ERP/telemedicina"])
+    goal1(["🎯 Mejorar eficiencia operativa"])
+    goal2(["🎯 Ampliar cobertura nacional"])
+    constraint(["🚫 No cambiar herramientas de oficina en 2025"])
+
+    stakeholder -.->|"identifica"| driver
+    driver -->|"motiva"| goal1
+    driver -->|"motiva"| goal2
+    constraint -.->|"limita"| goal2
+
+    classDef motivacion fill:#ccccff,color:#000,stroke:#6666cc;
+    class stakeholder,driver,goal1,goal2,constraint motivacion
+```
+
+Estos elementos de Motivación son los que después reciben una **Realization** desde un Business Process (Taller 1) o una **Influence** desde un Requirement de seguridad (Taller 5) o normatividad (Taller 6) — la Ficha y la Visión son el punto de partida de esa trazabilidad, no un documento aislado.
+
+---
+
 _Esta guía hace parte del Taller 0 de Preliminary y Architecture Vision — curso Arquitectura Empresarial, Universidad de La Sabana._
