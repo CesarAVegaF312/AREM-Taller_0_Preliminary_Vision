@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Visión preliminar · Objetivos, síntomas y mapa TO-BE · AREM</title>
+<style>
+  :root{
+    --paper:#F2F1EA;
+    --ink:#14263C;
+    --ink-soft:#3B4C5E;
+    --threat:#B4552B;
+    --control:#1C7150;
+    --steel:#5F7387;
+    --rule:#C9C6B8;
+    --card:#FBFAF6;
+    --grid:rgba(20,38,60,.055);
+    --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+    --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *{transition:none !important} }
+
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:var(--sans); font-size:17px; line-height:1.55;
+    background-image:
+      repeating-linear-gradient(0deg, var(--grid) 0 1px, transparent 1px 28px),
+      repeating-linear-gradient(90deg, var(--grid) 0 1px, transparent 1px 28px);
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+  /* ---------- estructura de lámina ---------- */
+  .sheet{border:1px solid var(--rule);background:rgba(251,250,246,.72);margin:34px 0;position:relative}
+  .sheet::before,.sheet::after{content:"";position:absolute;width:13px;height:13px;border:1px solid var(--steel);opacity:.5}
+  .sheet::before{top:-7px;left:-7px;border-right:0;border-bottom:0}
+  .sheet::after{bottom:-7px;right:-7px;border-left:0;border-top:0}
+  .sheet-inner{padding:34px}
+  @media(max-width:720px){ .sheet-inner{padding:20px} .wrap{padding:0 14px} }
+
+  .ref{font-family:var(--mono);font-size:11.5px;color:var(--steel);letter-spacing:.04em}
+
+  h1{font-size:clamp(32px,5.6vw,56px);line-height:1.05;letter-spacing:-.025em;font-weight:800;margin:.1em 0 .25em}
+  h2{font-size:clamp(24px,3.4vw,34px);line-height:1.12;letter-spacing:-.018em;font-weight:800;margin:0 0 6px}
+  h3{font-size:19px;letter-spacing:-.01em;font-weight:700;margin:0 0 6px}
+  .lede{font-size:19px;color:var(--ink-soft);max-width:66ch;margin:0}
+  p{max-width:70ch}
+  a{color:var(--threat)}
+
+  /* ---------- cabecera ---------- */
+  header.top{border-bottom:1px solid var(--rule);background:var(--ink);color:#EAF0F4}
+  header.top .wrap{display:flex;justify-content:space-between;align-items:baseline;padding-top:14px;padding-bottom:14px;gap:16px;flex-wrap:wrap}
+  header.top .ref{color:#8CA6BA}
+  nav.jump{display:flex;gap:18px;flex-wrap:wrap}
+  nav.jump a{color:#EAF0F4;text-decoration:none;font-family:var(--mono);font-size:12px;border-bottom:1px solid transparent;padding-bottom:2px}
+  nav.jump a:hover,nav.jump a:focus-visible{border-bottom-color:#E0A06B}
+
+  .hero{padding:52px 0 8px}
+  .hero h1{max-width:19ch}
+
+  /* ---------- piezas ---------- */
+  .cols{display:grid;gap:20px}
+  .c2{grid-template-columns:repeat(2,1fr)}
+  .c3{grid-template-columns:repeat(3,1fr)}
+  @media(max-width:860px){ .c2,.c3{grid-template-columns:1fr} }
+  .block{border:1px solid var(--rule);background:var(--card);padding:18px}
+  .block.threatline{border-top:3px solid var(--threat)}
+  .block.controlline{border-top:3px solid var(--control)}
+  .block.inkline{border-top:3px solid var(--ink)}
+  .block.steelline{border-top:3px solid var(--steel)}
+  .block p{font-size:15px;color:var(--ink-soft);margin:0}
+  .block .tag{display:block;font-family:var(--mono);font-size:11px;color:var(--steel);letter-spacing:.04em;margin-bottom:6px;text-transform:uppercase}
+
+  .steps{counter-reset:s;display:grid;gap:12px}
+  .step{display:flex;gap:14px;border:1px solid var(--rule);background:var(--card);padding:14px 16px}
+  .step .n{font-family:var(--mono);font-size:13px;color:var(--threat);flex:none;padding-top:2px}
+  .step p{margin:4px 0 0;font-size:15px;color:var(--ink-soft)}
+  .step ul{margin:8px 0 0;padding-left:18px}
+  .step li{font-size:14.5px;color:var(--ink-soft);margin-bottom:4px}
+
+  /* ---------- cadena de trazabilidad ---------- */
+  .chain{display:flex;gap:0;flex-wrap:wrap;border:1px solid var(--ink);background:var(--card)}
+  .chain button{
+    flex:1 1 200px;background:transparent;border:0;border-right:1px solid var(--rule);
+    padding:14px 16px;text-align:left;cursor:pointer;font-family:var(--sans);color:var(--ink);min-width:0
+  }
+  .chain button:last-child{border-right:0}
+  .chain button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+  .chain button[aria-pressed="true"] .cn{color:#E0A06B}
+  .chain button:focus-visible{outline:2px solid var(--threat);outline-offset:-2px}
+  .chain .cn{display:block;font-family:var(--mono);font-size:11px;color:var(--steel);margin-bottom:3px}
+  .chain .ct{font-size:14.5px;font-weight:700;line-height:1.3}
+  .chaindetail{border:1px solid var(--rule);border-top:0;background:var(--card);padding:20px}
+  .chaindetail h3{margin-bottom:10px}
+  .chaindetail .ex{font-family:var(--mono);font-size:13px;color:var(--ink);background:rgba(180,85,43,.09);padding:10px 12px;border-left:3px solid var(--threat)}
+
+  .tracepart{margin:0 0 12px;padding:9px 13px;border-left:3px solid var(--steel);background:rgba(95,115,135,.06)}
+  .tracepart:last-child{margin-bottom:0}
+  .tracepart .tk{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin-bottom:3px}
+  .tracepart p{margin:0;font-size:15px;color:var(--ink-soft)}
+  .tracepart.problem{border-left-color:var(--threat);background:rgba(180,85,43,.07)}
+  .tracepart.problem .tk{color:var(--threat)}
+  .tracepart.benefit{border-left-color:var(--control);background:rgba(28,113,80,.07)}
+  .tracepart.benefit .tk{color:var(--control)}
+  .tracepart.map{border-left-color:var(--ink)}
+  .tracepart .metric{display:block;margin-top:4px;font-family:var(--mono);font-size:12.5px;color:var(--steel)}
+
+  /* ---------- mapa conceptual ---------- */
+  .mapflow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}
+  .mapflow .stack{display:grid;gap:14px}
+  .mapflow .arrow{display:grid;place-items:center;font-size:22px;color:var(--threat);font-family:var(--mono)}
+  @media(max-width:860px){ .mapflow{grid-template-columns:1fr} .mapflow .arrow{transform:rotate(90deg);margin:-4px 0} }
+
+  /* ---------- tablas ---------- */
+  table{border-collapse:collapse;width:100%;font-size:14.5px}
+  th,td{border:1px solid var(--rule);padding:9px 11px;text-align:left;vertical-align:top}
+  thead th{background:var(--ink);color:var(--paper);font-weight:700;font-size:13px}
+  .scope td.in{border-left:3px solid var(--control)}
+  .scope td.out{border-left:3px solid var(--threat)}
+
+  .callout{border:1px solid var(--ink);background:var(--ink);color:#EAF0F4;padding:20px 22px}
+  .callout p{color:#C6D6E1;margin:0;max-width:78ch}
+  .callout strong{color:#E0A06B}
+
+  .note{font-size:14px;color:var(--steel);max-width:78ch}
+  footer{border-top:1px solid var(--rule);margin-top:40px;padding:26px 0 50px}
+  footer p{font-family:var(--mono);font-size:12px;color:var(--steel)}
+  .srcs{font-size:14px;color:var(--ink-soft)}
+  .srcs li{margin-bottom:5px}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <span class="ref">AREM · Módulo 0 · Hoja de visión preliminar</span>
+    <nav class="jump" aria-label="Secciones">
+      <a href="#trazabilidad">Trazabilidad</a>
+      <a href="#ficha">Ficha de caracterización</a>
+      <a href="#mapa">Mapa conceptual</a>
+      <a href="#alcance">Alcance</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <section class="hero">
+    <p class="ref">Universidad de La Sabana · Arquitectura Empresarial · Caso Fundación Salud Viva</p>
+    <h1>Un objetivo estratégico que no llega hasta una caja del mapa no sirve de nada.</h1>
+    <p class="lede">Preliminary y Architecture Vision son las dos primeras fases de TOGAF ADM: la Ficha de Caracterización levanta el negocio, sus objetivos y sus síntomas; el Documento de Visión traduce eso en un mapa de arquitectura de alto nivel. Lo que conecta ambos documentos es la trazabilidad. Elija un objetivo estratégico de Fundación Salud Viva y siga su hilo completo: el síntoma que lo motivó, el beneficio que se espera y la caja del mapa TO-BE que lo realiza.</p>
+  </section>
+
+  <!-- ============ TRAZABILIDAD ============ -->
+  <section class="sheet" id="trazabilidad">
+    <div class="sheet-inner">
+      <p class="ref">01 · El hilo que sostiene todo el semestre</p>
+      <h2>De un objetivo estratégico a una caja del mapa</h2>
+      <p class="lede" style="margin-bottom:18px">Ningún objetivo aparece de la nada: nace de un problema que el cliente vive todos los días, promete un beneficio verificable y debe poder señalarse sobre una caja concreta del mapa conceptual. Seleccione un objetivo para ver su cadena completa.</p>
+
+      <div class="chain" role="group" aria-label="Objetivos estratégicos de Fundación Salud Viva" id="chain"></div>
+      <div class="chaindetail" id="chainDetail"></div>
+
+      <div class="callout" style="margin-top:16px">
+        <p><strong>Por qué importa:</strong> si un objetivo no puede conectarse con un síntoma real y con una caja del mapa, es una aspiración genérica, no una visión de arquitectura. Esa es la prueba que aplica la rúbrica del taller.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FICHA ============ -->
+  <section class="sheet" id="ficha">
+    <div class="sheet-inner">
+      <p class="ref">02 · Preliminary</p>
+      <h2>Ficha de Caracterización del Cliente</h2>
+      <p class="lede" style="margin-bottom:18px">Cinco pasos, en este orden. Cada uno alimenta directamente al siguiente taller del semestre — la lista de procesos clave, por ejemplo, es el insumo del Taller 1 de BPMN. Así quedó diligenciada para Fundación Salud Viva.</p>
+      <div class="steps">
+        <div class="step"><span class="n">Paso 1</span><div>
+          <h3>Información general del negocio</h3>
+          <p>Fundación Salud Viva — entidad de salud dedicada a atención domiciliaria y telemedicina. 70 empleados, 2.500 usuarios mensuales activos. Oficina principal en Bogotá y plataforma digital de alcance nacional. Tecnología actual: Google Workspace, app móvil propia en Flutter y ERP en la nube (Zoho One).</p>
+        </div></div>
+        <div class="step"><span class="n">Paso 2</span><div>
+          <h3>Objetivos estratégicos</h3>
+          <ul>
+            <li>Mejorar la eficiencia operativa reduciendo el tiempo de atención por paciente.</li>
+            <li>Ampliar cobertura nacional sin duplicar costos operativos.</li>
+            <li>Aumentar el cumplimiento con normativas de seguridad en el manejo de datos clínicos.</li>
+          </ul>
+        </div></div>
+        <div class="step"><span class="n">Paso 3</span><div>
+          <h3>Problemas identificados (síntomas, no soluciones)</h3>
+          <ul>
+            <li>Falta de integración entre la app móvil, el ERP y la plataforma de telemedicina.</li>
+            <li>Dificultad para generar reportes integrales de pacientes y procesos.</li>
+            <li>No existe una arquitectura formal documentada para planear futuras expansiones.</li>
+          </ul>
+        </div></div>
+        <div class="step"><span class="n">Paso 4</span><div>
+          <h3>Procesos clave del negocio</h3>
+          <ul>
+            <li>Gestión de citas y agendamiento médico.</li>
+            <li>Atención médica domiciliaria y seguimiento remoto.</li>
+            <li>Gestión administrativa y facturación a aseguradoras.</li>
+          </ul>
+        </div></div>
+        <div class="step"><span class="n">Paso 5</span><div>
+          <h3>Expectativas, restricciones y contacto</h3>
+          <p><strong>Expectativas:</strong> claridad sobre qué transformar primero, capacidad de escalar sin rehacer todo, identificar y mitigar riesgos tecnológicos. <strong>Restricciones:</strong> no se pueden cambiar las herramientas básicas de oficina en 2025; toda solución debe operar en nube pública o híbrida. <strong>Contacto:</strong> persona designada por la Fundación, con nombre, correo/teléfono y rol frente a la solución.</p>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MAPA CONCEPTUAL ============ -->
+  <section class="sheet" id="mapa">
+    <div class="sheet-inner">
+      <p class="ref">03 · Architecture Vision</p>
+      <h2>Mapa conceptual de alto nivel (TO-BE)</h2>
+      <p class="lede" style="margin-bottom:18px">Cuatro cajas, deliberadamente imprecisas: negocio y datos alimentan una capa de aplicaciones integrada, que se apoya sobre una capa tecnológica en la nube. Este es todo el nivel de detalle que corresponde a este taller — el desglose en procesos, contenedores y componentes es trabajo de los Talleres 1 a 4.</p>
+
+      <div class="mapflow">
+        <div class="stack">
+          <div class="block inkline">
+            <span class="tag">Negocio</span>
+            <h3>Atención al paciente</h3>
+            <p>Citas, atención domiciliaria y facturación a aseguradoras: los tres procesos clave de la Ficha.</p>
+          </div>
+          <div class="block inkline">
+            <span class="tag">Datos</span>
+            <h3>Historia clínica unificada</h3>
+            <p>Datos de pacientes consolidados en un único modelo, hoy repartidos entre la app, el ERP y la telemedicina.</p>
+          </div>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="block controlline">
+          <span class="tag">Aplicaciones</span>
+          <h3>Plataforma integrada</h3>
+          <p>App móvil + ERP (Zoho One) + telemedicina operando como un solo sistema de cara al paciente y al personal clínico.</p>
+        </div>
+        <div class="arrow" aria-hidden="true">→</div>
+        <div class="block steelline">
+          <span class="tag">Tecnología</span>
+          <h3>Infraestructura en la nube</h3>
+          <p>Nube pública o híbrida, condición no negociable de la Ficha: permite escalar a nivel nacional sin duplicar infraestructura por ciudad.</p>
+        </div>
+      </div>
+
+      <p class="note" style="margin-top:16px">Este mapa es el que cita cada objetivo estratégico en la sección de <a href="#trazabilidad">trazabilidad</a>: la caja que aparece ahí es siempre una de estas cuatro.</p>
+    </div>
+  </section>
+
+  <!-- ============ ALCANCE ============ -->
+  <section class="sheet" id="alcance">
+    <div class="sheet-inner">
+      <p class="ref">04 · Architecture Vision</p>
+      <h2>Alcance del proyecto</h2>
+      <p class="lede" style="margin-bottom:18px">Muchas de las líneas de "fuera de alcance" no son una decisión de arquitectura: ya vienen dadas por las restricciones que el cliente fijó en el Paso 5 de la Ficha.</p>
+
+      <table class="scope">
+        <thead><tr><th style="width:50%">En alcance</th><th>Fuera de alcance</th></tr></thead>
+        <tbody>
+          <tr><td class="in">Integración de app móvil, ERP y telemedicina</td><td class="out">Reemplazo de Google Workspace (restricción de la Ficha)</td></tr>
+          <tr><td class="in">Arquitectura de datos unificada de pacientes</td><td class="out">Migración fuera de nube pública/híbrida</td></tr>
+          <tr><td class="in">Documentación formal de la arquitectura actual y objetivo</td><td class="out">Implementación real del sistema (el curso entrega el diseño, no lo construye)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout" style="margin-top:20px">
+        <p><strong>Regla que no se negocia:</strong> el alcance se declara antes de bocetar el mapa, no después. Si el mapa conceptual incluye una caja que nadie puso en el alcance, sobra trabajo o falta una restricción por documentar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sheet">
+    <div class="sheet-inner">
+      <p class="ref">05 · Para seguir</p>
+      <h2>Fuentes</h2>
+      <ul class="srcs">
+        <li><a href="guia_paso_a_paso_preliminary_vision.md">Guía Paso a Paso: Preliminary y Architecture Vision</a> — metodología completa de los dos entregables, tabla de errores comunes y checklist de autoevaluación.</li>
+        <li><a href="Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf">Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf</a> — ficha oficial de referencia del curso sobre Fundación Salud Viva.</li>
+        <li>TOGAF ADM — fases Preliminary y Architecture Vision, punto de entrada de todo el ciclo de desarrollo de arquitectura.</li>
+      </ul>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>AREM · Módulo 0 · Preliminary Vision y Architecture Vision · Universidad de La Sabana</p>
+  </div>
+</footer>
+
+<script>
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+/* ============================================================
+   Trazabilidad: 3 objetivos estratégicos de Fundación Salud Viva
+   ============================================================ */
+const TRACE = [
+  {
+    n: "Objetivo 01",
+    title: "Mejorar la eficiencia operativa reduciendo el tiempo de atención por paciente.",
+    problem: "Falta de integración entre la app móvil, el ERP y la plataforma de telemedicina: el personal duplica el registro de un mismo paciente en tres sistemas distintos.",
+    benefit: "Menos tiempo administrativo por paciente al integrar app, ERP y telemedicina en un solo flujo.",
+    metric: "Se mide con: minutos promedio de atención por paciente.",
+    map: "Aplicaciones",
+    mapDetail: "Plataforma integrada (app + ERP + telemedicina) — la caja que hace desaparecer el registro triplicado."
+  },
+  {
+    n: "Objetivo 02",
+    title: "Ampliar cobertura nacional sin duplicar costos operativos.",
+    problem: "No existe una arquitectura formal documentada para planear futuras expansiones: cada nueva ciudad se resuelve improvisando sobre la infraestructura actual.",
+    benefit: "La plataforma soporta más usuarios sin duplicar infraestructura por ciudad.",
+    metric: "Se mide con: costo operativo por usuario activo.",
+    map: "Tecnología",
+    mapDetail: "Infraestructura en nube pública o híbrida — permite escalar horizontalmente en vez de replicar instalaciones locales."
+  },
+  {
+    n: "Objetivo 03",
+    title: "Aumentar el cumplimiento con normativas de seguridad en el manejo de datos clínicos.",
+    problem: "Dificultad para generar reportes integrales de pacientes y procesos: los datos clínicos están fragmentados y nadie puede auditar quién accedió a qué.",
+    benefit: "Datos de pacientes con control de acceso y trazabilidad centralizados.",
+    metric: "Se mide con: resultado del checklist normativo (Taller 6).",
+    map: "Datos",
+    mapDetail: "Historia clínica y datos de pacientes unificados — la caja que hace posible auditar y centralizar el acceso."
+  }
+];
+
+const chain = document.getElementById("chain");
+TRACE.forEach((t,i)=>{
+  const b = document.createElement("button");
+  b.type = "button";
+  b.setAttribute("aria-pressed", String(i===0));
+  b.innerHTML = `<span class="cn">${esc(t.n)}</span><span class="ct">${esc(t.title)}</span>`;
+  b.addEventListener("click", ()=>{
+    [...chain.children].forEach(c=>c.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    showTrace(i);
+  });
+  chain.appendChild(b);
+});
+
+function showTrace(i){
+  const t = TRACE[i];
+  document.getElementById("chainDetail").innerHTML = `
+    <h3>${esc(t.title)}</h3>
+    <div class="tracepart problem">
+      <span class="tk">Síntoma que lo originó</span>
+      <p>${esc(t.problem)}</p>
+    </div>
+    <div class="tracepart benefit">
+      <span class="tk">Beneficio esperado</span>
+      <p>${esc(t.benefit)}<span class="metric">${esc(t.metric)}</span></p>
+    </div>
+    <div class="tracepart map">
+      <span class="tk">Caja del mapa TO-BE que lo realiza · ${esc(t.map)}</span>
+      <p>${esc(t.mapDetail)}</p>
+    </div>
+  `;
+}
+
+/* arranque */
+showTrace(0);
+</script>
+</body>
+</html>
