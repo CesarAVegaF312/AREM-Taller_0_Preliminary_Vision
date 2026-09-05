@@ -12,6 +12,12 @@ Establecer el alcance, el contexto estratégico y la visión de alto nivel de la
 
 Antes de reunirse con el cliente, revise la [**Guía Paso a Paso: Preliminary y Architecture Vision**](clase/guia_paso_a_paso_preliminary_vision.md). Incluye la metodología para construir la Ficha de Caracterización y el Documento de Visión, un ejemplo completo tomado del material oficial del curso (Fundación Salud Viva), y una tabla de errores comunes.
 
+### 🖼️ Versión visual: Trazabilidad de la Visión Preliminar
+
+[`clase/visualizacion-vision-preliminar.html`](clase/visualizacion-vision-preliminar.html) es una página interactiva autocontenida: una cadena clickeable con los 3 objetivos estratégicos de Fundación Salud Viva donde cada uno muestra el síntoma que lo motivó, el beneficio esperado (con su métrica) y la caja del mapa conceptual TO-BE que lo realiza, además de los 5 pasos de la Ficha diligenciados con datos reales del caso, el mapa conceptual de 4 cajas y la tabla de alcance/fuera de alcance. GitHub no la renderiza interactiva desde la vista de archivo; para verla:
+- Descargue el archivo y ábralo con doble clic (funciona sin conexión, es HTML plano), o
+- Pegue esta URL en [htmlpreview.github.io](https://htmlpreview.github.io/): `https://raw.githubusercontent.com/CesarAVegaF312/AREM-Taller_0_Preliminary_Vision/main/clase/visualizacion-vision-preliminar.html`
+
 ## 🏥 Caso base de referencia: Fundación Salud Viva
 
 Este es el ejemplo oficial de ficha de caracterización del curso, disponible en [`clase/Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf`](clase/Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf). Úselo como referencia de formato y de profundidad — no lo copie para su cliente real.

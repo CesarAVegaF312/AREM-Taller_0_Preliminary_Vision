@@ -61,6 +61,8 @@ El diagrama de ejemplo está escrito en [Mermaid](https://mermaid.js.org/) y se 
 
 ### B.2 Ejemplo guiado: Visión de Fundación Salud Viva
 
+> Vea la trazabilidad objetivo → síntoma → beneficio → caja del mapa en versión interactiva: [`clase/visualizacion-vision-preliminar.html`](visualizacion-vision-preliminar.html).
+
 **Mapa conceptual de alto nivel** (obsérvese que es deliberadamente impreciso — el detalle llega después):
 
 ```mermaid
