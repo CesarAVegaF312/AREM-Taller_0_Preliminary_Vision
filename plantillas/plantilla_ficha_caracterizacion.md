@@ -1,4 +1,4 @@
-# 📄 Ficha de Caracterización del Cliente
+# Ficha de Caracterización del Cliente
 
 _Misma estructura que la plantilla oficial en Word (`Material/Proyecto/Ficha de Caracterización del Cliente.docx`) — use esta versión si su equipo trabaja todo el proyecto desde el repositorio de GitHub._
 

@@ -1,4 +1,4 @@
-# 🧭 Guía Paso a Paso: Preliminary y Architecture Vision
+# Guía Paso a Paso: Preliminary y Architecture Vision
 
 Esta guía complementa el `README.md` del taller. Cubre las dos primeras fases de TOGAF ADM adaptadas al curso: **Preliminary** (la Ficha de Caracterización del Cliente) y **Architecture Vision** (la visión de alto nivel de la arquitectura y sus beneficios esperados). Todo lo que se construya aquí es la base sobre la que se apoyan los demás talleres del semestre — si el alcance queda mal definido acá, el error se arrastra hasta el Taller 9.
 
@@ -134,9 +134,9 @@ La Ficha y la Visión se traducen a la **capa de Motivación** de ArchiMate (ver
 flowchart TD
     stakeholder(["Directora de Operaciones - Fundación Salud Viva"])
     driver(["Falta de integración app/ERP/telemedicina"])
-    goal1(["🎯 Mejorar eficiencia operativa"])
-    goal2(["🎯 Ampliar cobertura nacional"])
-    constraint(["🚫 No cambiar herramientas de oficina en 2025"])
+    goal1(["Mejorar eficiencia operativa"])
+    goal2(["Ampliar cobertura nacional"])
+    constraint(["No cambiar herramientas de oficina en 2025"])
 
     stakeholder -.->|"identifica"| driver
     driver -->|"motiva"| goal1
