@@ -12,13 +12,37 @@ Establecer el alcance, el contexto estratégico y la visión de alto nivel de la
 
 Antes de reunirse con el cliente, revise la [**Guía Paso a Paso: Preliminary y Architecture Vision**](clase/guia_paso_a_paso_preliminary_vision.md). Incluye la metodología para construir la Ficha de Caracterización y el Documento de Visión, un ejemplo completo tomado del material oficial del curso (Fundación Salud Viva), y una tabla de errores comunes.
 
-La presentación de la clase está en [`0. Introduccion - Arquitectura Empresarial.pptx`](0.%20Introduccion%20-%20Arquitectura%20Empresarial.pptx) (versión para estudiantes, sin notas del orador).
+Las presentaciones de la clase (versión para estudiantes, sin notas del orador) son dos:
+
+- [`0. Introduccion - Arquitectura Empresarial.pptx`](0.%20Introduccion%20-%20Arquitectura%20Empresarial.pptx): logística del curso (competencias, evaluación, fechas y canales).
+- [`1. Arquitectura Empresarial.pptx`](1.%20Arquitectura%20Empresarial.pptx): contenido de la sesión (qué es la Arquitectura Empresarial, por qué importa, sus capas, AE frente a arquitectura de software, marcos de referencia y TOGAF ADM, el rol del arquitecto y un caso breve del sector salud).
 
 ### Versión visual: Trazabilidad de la Visión Preliminar
 
 [`clase/visualizacion-vision-preliminar.html`](clase/visualizacion-vision-preliminar.html) es una página interactiva autocontenida: una cadena clickeable con los 3 objetivos estratégicos de Fundación Salud Viva donde cada uno muestra el síntoma que lo motivó, el beneficio esperado (con su métrica) y la caja del mapa conceptual TO-BE que lo realiza, además de los 5 pasos de la Ficha diligenciados con datos reales del caso, el mapa conceptual de 4 cajas y la tabla de alcance/fuera de alcance. GitHub no la renderiza interactiva desde la vista de archivo; para verla:
 - Descargue el archivo y ábralo con doble clic (funciona sin conexión, es HTML plano), o
 - Pegue esta URL en [htmlpreview.github.io](https://htmlpreview.github.io/): `https://raw.githubusercontent.com/CesarAVegaF312/AREM-Taller_0_Preliminary_Vision/main/clase/visualizacion-vision-preliminar.html`
+
+## Fase ADM → taller → corte
+
+El enunciado del proyecto usa las fases del TOGAF ADM como columna vertebral del semestre. Esta tabla resume a qué taller y a qué corte corresponde cada fase; el detalle sábado a sábado está en el [cronograma de `AREM-Proyecto-Cliente`](https://github.com/CesarAVegaF312/AREM-Proyecto-Cliente#4-cronograma-del-semestre-confirmado).
+
+| Fase del ADM | Taller | Entregable principal | Corte |
+|---|---|---|---|
+| Preliminary | Taller 0 | Ficha de caracterización del cliente | Corte 1 (sustentación 22/08) |
+| Architecture Vision | Taller 0 | Documento de visión con mapa conceptual de alto nivel y beneficios esperados | Corte 1 |
+| Business Architecture | Taller 1 | Modelo AS-IS del proceso de negocio (BPMN) con sus actores | Corte 1 |
+| Information Systems Architecture: Datos | Taller 2 | Modelo lógico de datos (ERD) y diagrama de contexto AS-IS | Corte 1 |
+| Information Systems Architecture: Aplicaciones | Taller 3 | Vistas C1 y C2 del sistema del cliente (modelo C4) | Corte 2 (sustentación 03/10) |
+| Technology Architecture | Taller 4 | Mapa de infraestructura AS-IS | Corte 2 |
+| Transversal a Aplicaciones y Tecnología | Talleres 5 y 6 | Análisis STRIDE y checklist de cumplimiento normativo sobre el sistema documentado | Corte 2 |
+| Opportunities & Solutions | Taller 7 | Documento de mejora de arquitectura: brechas, TO-BE y matriz de decisión | Corte 3 (presentación 14/11, paquete ajustado hasta el 17/11) |
+| Integración de vistas (no es una fase del ADM; integra las anteriores) | Taller 8 | Tablero de vistas integradas AS-IS y TO-BE | Corte 3 |
+| Migration Planning | Taller 9 | Matriz de riesgos, plan de implementación con gestión del cambio y vista ArchiMate de migración | Corte 3 |
+| Implementation Governance | Taller 9 | Plan de gobernanza (principios, estándares, métricas) y vista ArchiMate de motivación | Corte 3 |
+| Architecture Change Management | Taller 9 | Procedimiento de actualización de la arquitectura con al menos 2 ADR | Corte 3 |
+
+---
 
 ## Caso base de referencia: Fundación Salud Viva
 
