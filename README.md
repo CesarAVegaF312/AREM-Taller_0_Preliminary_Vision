@@ -2,9 +2,9 @@
 
 ## Objetivo
 
-Establecer el alcance, el contexto estratégico y la visión de alto nivel de la arquitectura del cliente real — fases **Preliminary** y **Architecture Vision** de TOGAF ADM — como base para todo el trabajo del semestre. Lo que se defina aquí es lo que heredan todos los talleres siguientes: si el alcance queda mal definido, el error se arrastra hasta la presentación final.
+Establecer el alcance, el contexto estratégico y la visión de alto nivel de la arquitectura del cliente real — fases **Preliminary** y **Architecture Vision** del ADM de TOGAF (TOGAF Standard, 10th Edition) — como base para todo el trabajo del semestre. Lo que se defina aquí es lo que heredan todos los talleres siguientes: si el alcance queda mal definido, el error se arrastra hasta la presentación final.
 
-⏰ **Este taller corresponde al cierre del Corte 1 (14 de agosto), junto con el Taller 1 (Business Architecture) y el Taller 2 (Datos AS-IS).**
+⏰ **Este taller corresponde al Corte 1, junto con el Taller 1 (BPMN) y el Taller 2 (Modelo de Información y Diagrama de Contexto). Según el calendario confirmado en [AREM-Proyecto-Cliente](https://github.com/CesarAVegaF312/AREM-Proyecto-Cliente), el corte cierra el sábado 15 de agosto y se sustenta el sábado 22 de agosto.**
 
 ---
 

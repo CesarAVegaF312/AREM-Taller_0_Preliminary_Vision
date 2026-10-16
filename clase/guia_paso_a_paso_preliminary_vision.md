@@ -43,7 +43,7 @@ El diagrama de ejemplo está escrito en [Mermaid](https://mermaid.js.org/) y se 
 
 **V. Expectativas y restricciones**
 - Expectativas: claridad sobre qué transformar primero, poder escalar sin rehacer todo, identificar y mitigar riesgos tecnológicos.
-- Restricciones: no se pueden cambiar las herramientas básicas de oficina en 2025; toda solución debe operar en nube pública o híbrida.
+- Restricciones: no se pueden cambiar las herramientas básicas de oficina en 2026; toda solución debe operar en nube pública o híbrida.
 
 **VI. Persona de contacto**
 - Nombre, correo/teléfono y rol frente a la solución.
@@ -136,7 +136,7 @@ flowchart TD
     driver(["Falta de integración app/ERP/telemedicina"])
     goal1(["Mejorar eficiencia operativa"])
     goal2(["Ampliar cobertura nacional"])
-    constraint(["No cambiar herramientas de oficina en 2025"])
+    constraint(["No cambiar herramientas de oficina en 2026"])
 
     stakeholder -.->|"identifica"| driver
     driver -->|"motiva"| goal1
