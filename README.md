@@ -10,7 +10,7 @@ Establecer el alcance, el contexto estratégico y la visión de alto nivel de la
 
 ## Guía paso a paso
 
-Antes de reunirse con el cliente, revise la [**Guía Paso a Paso: Preliminary y Architecture Vision**](clase/guia_paso_a_paso_preliminary_vision.md). Incluye la metodología para construir la Ficha de Caracterización y el Documento de Visión, un ejemplo completo tomado del material oficial del curso (Fundación Salud Viva), y una tabla de errores comunes.
+Antes de reunirse con el cliente, revise la [**Guía Paso a Paso: Preliminary y Architecture Vision**](clase/guia_paso_a_paso_preliminary_vision.md). Incluye la metodología para construir la Ficha de Caracterización y el Documento de Visión (mapa conceptual, beneficios, alcance, capacidades de negocio y borrador de principios arquitectónicos), un ejemplo completo tomado del material oficial del curso (Fundación Salud Viva), y una tabla de errores comunes.
 
 Las presentaciones de la clase (versión para estudiantes, sin notas del orador) son dos:
 
@@ -30,7 +30,7 @@ El enunciado del proyecto usa las fases del TOGAF ADM como columna vertebral del
 | Fase del ADM | Taller | Entregable principal | Corte |
 |---|---|---|---|
 | Preliminary | Taller 0 | Ficha de caracterización del cliente | Corte 1 (sustentación 22/08) |
-| Architecture Vision | Taller 0 | Documento de visión con mapa conceptual de alto nivel y beneficios esperados | Corte 1 |
+| Architecture Vision | Taller 0 | Documento de visión con mapa conceptual de alto nivel, beneficios esperados, capacidades de negocio y borrador de principios arquitectónicos | Corte 1 |
 | Business Architecture | Taller 1 | Modelo AS-IS del proceso de negocio (BPMN) con sus actores | Corte 1 |
 | Information Systems Architecture: Datos | Taller 2 | Modelo lógico de datos (ERD) y diagrama de contexto AS-IS | Corte 1 |
 | Information Systems Architecture: Aplicaciones | Taller 3 | Vistas C1 y C2 del sistema del cliente (modelo C4) | Corte 2 (sustentación 03/10) |
@@ -39,7 +39,7 @@ El enunciado del proyecto usa las fases del TOGAF ADM como columna vertebral del
 | Opportunities & Solutions | Taller 7 | Documento de mejora de arquitectura: brechas, TO-BE y matriz de decisión | Corte 3 (presentación 14/11, paquete ajustado hasta el 17/11) |
 | Integración de vistas (no es una fase del ADM; integra las anteriores) | Taller 8 | Tablero de vistas integradas AS-IS y TO-BE | Corte 3 |
 | Migration Planning | Taller 9 | Matriz de riesgos, plan de implementación con gestión del cambio y vista ArchiMate de migración | Corte 3 |
-| Implementation Governance | Taller 9 | Plan de gobernanza (principios, estándares, métricas) y vista ArchiMate de motivación | Corte 3 |
+| Implementation Governance | Taller 9 | Plan de gobernanza (principios confirmados a partir del borrador del Taller 0, estándares, métricas) y vista ArchiMate de motivación | Corte 3 |
 | Architecture Change Management | Taller 9 | Procedimiento de actualización de la arquitectura con al menos 2 ADR | Corte 3 |
 
 ---
@@ -61,7 +61,8 @@ Siga la [guía paso a paso](clase/guia_paso_a_paso_preliminary_vision.md) para e
 1. Identifique cómo se traduce cada objetivo estratégico de la Ficha en un elemento de la Visión.
 2. Distinga un problema (síntoma) de una solución ya decidida en la sección de necesidades.
 3. Revise por qué el mapa conceptual de la Visión se mantiene deliberadamente a alto nivel.
-4. Valide el ejemplo contra la [checklist de autoevaluación](clase/guia_paso_a_paso_preliminary_vision.md#checklist-de-autoevaluación-antes-de-entregar).
+4. Revise las capacidades y los principios de ejemplo (pasos 5 y 6 de la guía): compruebe que cada capacidad sale de un proceso de la Ficha y no lleva nombre de sistema, y que cada principio descarta algo concreto.
+5. Valide el ejemplo contra la [checklist de autoevaluación](clase/guia_paso_a_paso_preliminary_vision.md#checklist-de-autoevaluación-antes-de-entregar).
 
 - Reciba retroalimentación del docente y registre avances en `clase/notas.md` (use la [plantilla de notas](plantillas/plantilla_notas.md)).
 
@@ -72,7 +73,7 @@ Siga la [guía paso a paso](clase/guia_paso_a_paso_preliminary_vision.md) para e
 Antes del cierre del Corte 1, el equipo debe:
 
 - Reunirse con el cliente real y diligenciar la Ficha de Caracterización en `entrega/ficha-caracterizacion.md` (use la [plantilla de ficha](plantillas/plantilla_ficha_caracterizacion.md), con la misma estructura del formato oficial en Word).
-- Redactar el Documento de Visión en `entrega/vision.md` (use la [plantilla de visión](plantillas/plantilla_vision.md)): mapa conceptual de alto nivel, beneficios esperados trazados a los objetivos estratégicos, y alcance del proyecto.
+- Redactar el Documento de Visión en `entrega/vision.md` (use la [plantilla de visión](plantillas/plantilla_vision.md)): mapa conceptual de alto nivel, beneficios esperados trazados a los objetivos estratégicos, alcance del proyecto, de 5 a 8 capacidades de negocio con su soporte tecnológico valorado, y un borrador de 3 principios arquitectónicos con su implicación. Las capacidades las madura el Taller 7 y los principios los confirma el Taller 9; aquí se escriben por primera vez.
 - Registrar cualquier fuente consultada en `entrega/referencias.md` con la [plantilla de referencias](plantillas/plantilla_referencias.md).
 
 ---
@@ -101,12 +102,12 @@ taller-00-preliminary-vision/
 
 ## Errores comunes
 
-Antes de entregar, compare su ficha y su visión contra los errores más frecuentes (respuestas genéricas, problemas redactados como soluciones, visión sin conexión con los objetivos estratégicos, mapa conceptual demasiado detallado) documentados en la [sección de errores comunes de la guía paso a paso](clase/guia_paso_a_paso_preliminary_vision.md#errores-comunes-a-evitar).
+Antes de entregar, compare su ficha y su visión contra los errores más frecuentes (respuestas genéricas, problemas redactados como soluciones, visión sin conexión con los objetivos estratégicos, mapa conceptual demasiado detallado, capacidades con nombre de sistema, principios que no descartan nada) documentados en la [sección de errores comunes de la guía paso a paso](clase/guia_paso_a_paso_preliminary_vision.md#errores-comunes-a-evitar).
 
 ## Entregables
 
 - Ficha de Caracterización del Cliente
-- Documento de Visión de Arquitectura (con mapa conceptual de alto nivel)
+- Documento de Visión de Arquitectura (con mapa conceptual de alto nivel, capacidades de negocio y borrador de principios arquitectónicos)
 - Referencias, si aplica investigación de sector
 
 ---
@@ -119,6 +120,7 @@ Antes de entregar, compare su ficha y su visión contra los errores más frecuen
 | Objetivos estratégicos y problemas      | Objetivos verificables; problemas descritos como síntomas, no soluciones      | Objetivos vagos o problemas presentados ya como solución técnica |
 | Visión de arquitectura                  | Conecta claramente los beneficios esperados con los objetivos estratégicos    | Visión desconectada de la ficha o genérica                      |
 | Alcance y restricciones                 | Alcance y restricciones explícitos y realistas                                | Alcance ambiguo o no declarado                                  |
+| Capacidades y principios (borrador)     | De 5 a 8 capacidades con verbo + objeto, atadas a procesos de la Ficha y con soporte tecnológico valorado con evidencia; 3 principios con declaración e implicación que descarta algo concreto | Capacidades con nombres de sistemas, principios genéricos sin implicación, o ausentes |
 
 ---
 
