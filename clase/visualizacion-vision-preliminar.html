@@ -15,6 +15,7 @@
     --rule:#C9C6B8;
     --card:#FBFAF6;
     --grid:rgba(20,38,60,.055);
+    --ochre:#A8781C;
     --mono: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
     --sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
@@ -119,6 +120,50 @@
   .scope td.in{border-left:3px solid var(--control)}
   .scope td.out{border-left:3px solid var(--threat)}
 
+  /* ---------- capacidades de negocio ---------- */
+  table.caps tbody tr.cap{cursor:pointer}
+  table.caps tbody tr.cap:hover td{background:rgba(95,115,135,.08)}
+  table.caps tbody tr.cap[aria-pressed="true"] td{background:var(--ink);color:var(--paper)}
+  table.caps tbody tr.cap:focus-visible{outline:2px solid var(--threat);outline-offset:-2px}
+  table.caps td.capname{font-weight:700}
+  table.caps td.capname .cn{display:block;font-family:var(--mono);font-size:11px;font-weight:400;color:var(--steel);margin-bottom:2px}
+  table.caps tr[aria-pressed="true"] td.capname .cn{color:#E0A06B}
+  .pill{display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border:1px solid currentColor;white-space:nowrap}
+  .pill::before{content:"";display:inline-block;width:8px;height:8px;background:currentColor;margin-right:7px;vertical-align:0}
+  .pill.alto{color:var(--control)}
+  .pill.medio{color:var(--ochre)}
+  .pill.bajo{color:var(--threat)}
+  tr[aria-pressed="true"] .pill.alto{color:#8FD9B6}
+  tr[aria-pressed="true"] .pill.medio{color:#E8C27A}
+  tr[aria-pressed="true"] .pill.bajo{color:#F0A27E}
+  .capdetail{border:1px solid var(--rule);border-top:0;background:var(--card);padding:20px}
+  .capdetail h3{margin-bottom:10px}
+  .tracepart.evidence{border-left-color:var(--ochre);background:rgba(168,120,28,.07)}
+  .tracepart.evidence .tk{color:var(--ochre)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin:0 0 12px;font-size:14px;color:var(--ink-soft)}
+
+  /* ---------- principios ---------- */
+  .prins{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid var(--ink);background:var(--card)}
+  @media(max-width:860px){ .prins{grid-template-columns:1fr} }
+  .prin{
+    background:transparent;border:0;border-right:1px solid var(--rule);border-top:3px solid var(--steel);
+    padding:16px 18px;text-align:left;cursor:pointer;font-family:var(--sans);color:var(--ink);min-width:0
+  }
+  .prin:last-child{border-right:0}
+  @media(max-width:860px){ .prin{border-right:0;border-bottom:1px solid var(--rule)} .prin:last-child{border-bottom:0} }
+  .prin[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-top-color:#E0A06B}
+  .prin:focus-visible{outline:2px solid var(--threat);outline-offset:-2px}
+  .prin .cn{display:block;font-family:var(--mono);font-size:11px;color:var(--steel);margin-bottom:4px}
+  .prin[aria-pressed="true"] .cn{color:#E0A06B}
+  .prin h3{font-size:18px;margin-bottom:10px}
+  .prin .pk{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--steel);margin:10px 0 3px}
+  .prin[aria-pressed="true"] .pk{color:#8CA6BA}
+  .prin p{margin:0;font-size:14.5px;color:var(--ink-soft);line-height:1.45}
+  .prin[aria-pressed="true"] p{color:#C6D6E1}
+  .prindetail{border:1px solid var(--rule);border-top:0;background:var(--card);padding:20px}
+  .prindetail h3{margin-bottom:10px}
+  .tracepart.origin{border-left-color:var(--ink);background:rgba(20,38,60,.06)}
+
   .callout{border:1px solid var(--ink);background:var(--ink);color:#EAF0F4;padding:20px 22px}
   .callout p{color:#C6D6E1;margin:0;max-width:78ch}
   .callout strong{color:#E0A06B}
@@ -140,6 +185,8 @@
       <a href="#ficha">Ficha de caracterización</a>
       <a href="#mapa">Mapa conceptual</a>
       <a href="#alcance">Alcance</a>
+      <a href="#capacidades">Capacidades</a>
+      <a href="#principios">Principios</a>
     </nav>
   </div>
 </header>
@@ -271,12 +318,54 @@
     </div>
   </section>
 
+  <!-- ============ CAPACIDADES ============ -->
+  <section class="sheet" id="capacidades">
+    <div class="sheet-inner">
+      <p class="ref">05 · Architecture Vision</p>
+      <h2>Capacidades de negocio (borrador)</h2>
+      <p class="lede" style="margin-bottom:18px">Salen de los 3 procesos clave de la Ficha; dos son transversales porque las necesitan todos los procesos. Obsérvese que ninguna lleva nombre de sistema. La evidencia extiende la ficha oficial con lo que una conversación con el cliente habría dejado: está aquí para mostrar el nivel de detalle esperado, no como dato del PDF. Seleccione una capacidad para ver el proceso de la Ficha que la realiza y la evidencia.</p>
+
+      <div class="legend" aria-hidden="true">
+        <span>Soporte tecnológico hoy:</span>
+        <span class="pill alto">Alto</span>
+        <span class="pill medio">Medio</span>
+        <span class="pill bajo">Bajo</span>
+      </div>
+
+      <table class="caps">
+        <thead><tr><th style="width:62%">Capacidad (verbo + objeto)</th><th>Soporte tecnológico hoy</th></tr></thead>
+        <tbody id="caps" aria-label="Capacidades de negocio de Fundación Salud Viva"></tbody>
+      </table>
+      <div class="capdetail" id="capDetail"></div>
+
+      <div class="callout" style="margin-top:16px">
+        <p><strong>Para leerlo:</strong> una capacidad es lo que el negocio hace, no el sistema con que lo hace. El soporte «bajo» no es un juicio sobre la tecnología: señala dónde el mapa TO-BE tiene más trabajo. El Taller 7 madura estas capacidades.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPIOS ============ -->
+  <section class="sheet" id="principios">
+    <div class="sheet-inner">
+      <p class="ref">06 · Architecture Vision</p>
+      <h2>Principios arquitectónicos (borrador)</h2>
+      <p class="lede" style="margin-bottom:18px">Cada uno descarta algo concreto y sale de un objetivo o de una restricción de la Ficha. Seleccione un principio para ver de dónde sale.</p>
+
+      <div class="prins" role="group" aria-label="Principios arquitectónicos de Fundación Salud Viva" id="prins"></div>
+      <div class="prindetail" id="prinDetail"></div>
+
+      <div class="callout" style="margin-top:16px">
+        <p><strong>Borrador a propósito:</strong> estos tres principios son un borrador a propósito. Cuando el Taller 5 muestre, por ejemplo, que los datos clínicos viajan sin cifrar, el equipo agregará un principio de seguridad; y si el Taller 3 muestra que el ERP ya expone una interfaz, el segundo principio se confirma con esa evidencia. Ese cierre se hace en el plan de gobernanza del Taller 9.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="sheet">
     <div class="sheet-inner">
-      <p class="ref">05 · Para seguir</p>
+      <p class="ref">07 · Para seguir</p>
       <h2>Fuentes</h2>
       <ul class="srcs">
-        <li><a href="guia_paso_a_paso_preliminary_vision.md">Guía Paso a Paso: Preliminary y Architecture Vision</a> — metodología completa de los dos entregables, tabla de errores comunes y checklist de autoevaluación.</li>
+        <li><a href="guia_paso_a_paso_preliminary_vision.md">Guía Paso a Paso: Preliminary y Architecture Vision</a> — metodología completa de los dos entregables, tabla de capacidades y de principios en borrador (Parte B.2), errores comunes y checklist de autoevaluación.</li>
         <li><a href="Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf">Ejemplo_Ficha_Cliente_Arquitectura_Empresarial.pdf</a> — ficha oficial de referencia del curso sobre Fundación Salud Viva.</li>
         <li>TOGAF ADM — fases Preliminary y Architecture Vision, punto de entrada de todo el ciclo de desarrollo de arquitectura.</li>
       </ul>
@@ -360,8 +449,124 @@ function showTrace(i){
   `;
 }
 
+/* ============================================================
+   Capacidades de negocio (borrador): 6 capacidades de Fundación Salud Viva
+   Textos tomados de la guía, Parte B.2.
+   ============================================================ */
+const CAPS = [
+  { name: "Agendar y gestionar citas",
+    process: "Gestión de citas y agendamiento médico",
+    support: "Alto",
+    evidence: "La app móvil agenda y notifica; el cliente no reporta fallas en este flujo" },
+  { name: "Atender pacientes a domicilio",
+    process: "Atención médica domiciliaria",
+    support: "Medio",
+    evidence: "Las visitas se programan en la app, pero el registro clínico se hace en formularios de Google Workspace" },
+  { name: "Hacer seguimiento remoto al paciente",
+    process: "Seguimiento remoto (telemedicina)",
+    support: "Medio",
+    evidence: "La plataforma de telemedicina funciona, pero no comparte datos con la app ni con el ERP" },
+  { name: "Mantener una historia clínica unificada",
+    process: "Transversal: citas, domiciliaria y telemedicina",
+    support: "Bajo",
+    evidence: "Problema #1 de la Ficha: la información del paciente vive en tres sistemas que no se hablan" },
+  { name: "Facturar a aseguradoras",
+    process: "Gestión administrativa y facturación",
+    support: "Medio",
+    evidence: "El ERP factura, pero los soportes clínicos se recopilan a mano desde los otros dos sistemas" },
+  { name: "Reportar la operación a la dirección",
+    process: "Transversal",
+    support: "Bajo",
+    evidence: "Problema #2 de la Ficha: no se pueden generar reportes integrales de pacientes y procesos" }
+];
+
+const capsBody = document.getElementById("caps");
+CAPS.forEach((c,i)=>{
+  const tr = document.createElement("tr");
+  tr.className = "cap";
+  tr.tabIndex = 0;
+  tr.setAttribute("role","button");
+  tr.setAttribute("aria-pressed", String(i===0));
+  const nivel = c.support.toLowerCase();
+  tr.innerHTML = `<td class="capname"><span class="cn">Capacidad 0${i+1}</span>${esc(c.name)}</td>
+    <td><span class="pill ${esc(nivel)}">${esc(c.support)}</span></td>`;
+  const activar = ()=>{
+    [...capsBody.children].forEach(r=>r.setAttribute("aria-pressed","false"));
+    tr.setAttribute("aria-pressed","true");
+    showCap(i);
+  };
+  tr.addEventListener("click", activar);
+  tr.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); activar(); } });
+  capsBody.appendChild(tr);
+});
+
+function showCap(i){
+  const c = CAPS[i];
+  document.getElementById("capDetail").innerHTML = `
+    <h3>${esc(c.name)} <span class="pill ${esc(c.support.toLowerCase())}" style="margin-left:8px;vertical-align:middle">${esc(c.support)}</span></h3>
+    <div class="tracepart map">
+      <span class="tk">Proceso(s) de la Ficha que la realizan</span>
+      <p>${esc(c.process)}</p>
+    </div>
+    <div class="tracepart evidence">
+      <span class="tk">Evidencia (qué dijo o mostró el cliente)</span>
+      <p>${esc(c.evidence)}</p>
+    </div>
+  `;
+}
+
+/* ============================================================
+   Principios arquitectónicos (borrador): 3 principios de Fundación Salud Viva
+   Textos tomados de la guía, Parte B.2.
+   ============================================================ */
+const PRINS = [
+  { name: "Historia clínica única",
+    statement: "Cada dato clínico del paciente se captura una sola vez y tiene un sistema dueño; los demás lo consultan, no lo copian.",
+    implication: "Descarta que la app, el ERP o la telemedicina guarden su propia versión del paciente; cualquier componente nuevo que duplique datos clínicos necesita una excepción aprobada.",
+    origin: "Objetivo 1 (eficiencia operativa) y problema #1 (falta de integración)" },
+  { name: "Integración por servicios, no por archivos",
+    statement: "Los sistemas se conectan por interfaces documentadas y versionadas, nunca por exportaciones manuales ni archivos compartidos.",
+    implication: "Descarta el intercambio de hojas de cálculo entre app, ERP y telemedicina; encarece cualquier integración que no exponga una interfaz.",
+    origin: "Objetivo 2 (cobertura nacional sin duplicar costos)" },
+  { name: "Nube pública o híbrida por defecto",
+    statement: "Todo componente nuevo se despliega en nube pública o híbrida; Google Workspace y Zoho One no se reemplazan en 2026.",
+    implication: "Descarta servidores propios en cada ciudad y descarta migrar el ERP o la ofimática este año.",
+    origin: "Restricciones de la Ficha (sección V)" }
+];
+
+const prins = document.getElementById("prins");
+PRINS.forEach((p,i)=>{
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "prin";
+  b.setAttribute("aria-pressed", String(i===0));
+  b.innerHTML = `<span class="cn">Principio 0${i+1}</span>
+    <h3>${esc(p.name)}</h3>
+    <span class="pk">Declaración</span><p>${esc(p.statement)}</p>
+    <span class="pk">Implicación (qué descarta)</span><p>${esc(p.implication)}</p>`;
+  b.addEventListener("click", ()=>{
+    [...prins.children].forEach(c=>c.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    showPrin(i);
+  });
+  prins.appendChild(b);
+});
+
+function showPrin(i){
+  const p = PRINS[i];
+  document.getElementById("prinDetail").innerHTML = `
+    <h3>${esc(p.name)}</h3>
+    <div class="tracepart origin">
+      <span class="tk">Sale de</span>
+      <p>${esc(p.origin)}</p>
+    </div>
+  `;
+}
+
 /* arranque */
 showTrace(0);
+showCap(0);
+showPrin(0);
 </script>
 </body>
 </html>
