@@ -184,4 +184,109 @@ Estos elementos de Motivación son los que después reciben una **Realization** 
 
 ---
 
+## Parte C — Ambiente del equipo y validación técnica de la entrega (opcional)
+
+La checklist de autoevaluación se revisa a mano, y es fácil pasar por alto una capacidad con nombre de sistema o un beneficio que no apunta a ningún objetivo. Esta parte propone dejar listo desde el primer taller el repositorio donde el equipo trabajará todo el semestre y **verificar la entrega con un comando** antes de mostrarla. No es un ejercicio de programación: el verificador ya está escrito en [`validacion-tecnica/validar_vision.py`](validacion-tecnica/validar_vision.py) y solo se ejecuta.
+
+### C.1 Qué se necesita
+
+- [Git](https://git-scm.com/) y una cuenta de GitHub por integrante.
+- Python 3 (viene en macOS y Linux; en Windows se instala desde [python.org](https://www.python.org/downloads/)). Si no puede instalarlo, sirve [Docker Desktop](https://www.docker.com/products/docker-desktop/) (ver C.3).
+
+### C.2 Preparar el repositorio del equipo
+
+1. Un integrante crea en GitHub el repositorio `AREM-EquipoX-NombreCliente`, con la estructura que explica [AREM-Proyecto-Cliente](https://github.com/CesarAVegaF312/AREM-Proyecto-Cliente), y agrega a los demás como colaboradores.
+2. Cada integrante lo clona: `git clone https://github.com/<usuario>/AREM-EquipoX-NombreCliente.git`.
+3. Se crea la carpeta `00-preliminary-vision/` y se copian ahí las plantillas de la Ficha y de la Visión de este taller, con los nombres `ficha-caracterizacion.md` y `vision.md`.
+4. Cada avance se sube con `git add`, `git commit` y `git push`. Desde el primer día queda un historial de quién cambió qué y cuándo, que es lo mismo que el Taller 9 pide al hablar de gobierno de la arquitectura.
+
+### C.3 Correr el verificador
+
+Primero sobre el ejemplo de clase, que ya está diligenciado con los datos de Fundación Salud Viva de esta guía. Desde la carpeta raíz de este repositorio de taller:
+
+```bash
+python3 clase/validacion-tecnica/validar_vision.py clase/validacion-tecnica/ejemplo
+```
+
+Resultado esperado: `0 faltante(s), 0 por revisar`. Luego, sobre la entrega del equipo (la ruta es la carpeta donde están `ficha-caracterizacion.md` y `vision.md`):
+
+```bash
+python3 clase/validacion-tecnica/validar_vision.py ../AREM-EquipoX-NombreCliente/00-preliminary-vision
+```
+
+Sin Python, con Docker (desde la misma carpeta raíz):
+
+```bash
+docker run --rm -v "$PWD":/trabajo -w /trabajo python:3.12-alpine python clase/validacion-tecnica/validar_vision.py clase/validacion-tecnica/ejemplo
+```
+
+### C.4 Qué revisa y qué no
+
+| Revisión | Ítem de la checklist que respalda | Tipo de resultado |
+|---|---|---|
+| No quedan campos de la plantilla sin llenar en la Ficha ni en la Visión | La ficha tiene información del cliente | FALTA |
+| Las seis secciones de la Ficha tienen contenido, incluidas las restricciones | Restricciones documentadas; persona de contacto registrada | FALTA o REVISAR |
+| Cada beneficio esperado apunta a un objetivo de la Ficha, y cada objetivo tiene al menos un beneficio | La visión conecta con los objetivos estratégicos | REVISAR |
+| El mapa conceptual existe y tiene de 4 a 6 cajas | El mapa se mantiene a alto nivel | REVISAR |
+| Hay alcance y fuera de alcance | Qué queda fuera de alcance | FALTA |
+| Hay de 5 a 8 capacidades, con soporte alto, medio o bajo, evidencia, y un proceso de la Ficha detrás; ninguna nombra un sistema (sistema, plataforma, app, ERP, etc.) | Capacidades con verbo + objeto, atadas a un proceso | FALTA o REVISAR |
+| Hay 3 principios con nombre, declaración, implicación y origen | 3 principios en borrador | FALTA |
+
+`FALTA` significa que algo que la guía pide no está. `REVISAR` es una alerta para que el equipo mire: el verificador compara palabras, así que puede equivocarse con sinónimos, y el equipo decide.
+
+Lo que el verificador **no** puede revisar es lo más importante: si los datos son reales, si un problema está escrito como síntoma o como solución, y si un principio de verdad descarta algo. Eso se valida con el cliente y con el docente.
+
+### C.5 Aplicarlo al cliente real
+
+1. Corra el verificador sobre `00-preliminary-vision/` antes de cada revisión con el docente.
+2. En `entrega/referencias.md` o en las notas del equipo, registre qué alertas `REVISAR` decidió dejar y por qué (por ejemplo, un objetivo redactado con otras palabras en la Visión).
+
+---
+
+## Parte D — Análisis de caso real y panorama tecnológico (opcional)
+
+### D.1 Caso: el lanzamiento de HealthCare.gov (Estados Unidos, 2013)
+
+**Qué pasó.** HealthCare.gov, el portal federal para comprar seguros de salud creado por la ley de salud de 2010 (Affordable Care Act), salió al aire el 1 de octubre de 2013 y falló desde el primer día: muchos usuarios no podían crear su cuenta ni completar la inscripción. Notas internas publicadas después por el Comité de Supervisión de la Cámara de Representantes indican que solo seis personas lograron inscribirse el primer día; otros documentos dan cifras distintas, pero todas muy bajas. En enero de 2014 el gobierno reemplazó al contratista principal, CGI Federal, por Accenture.
+
+En julio de 2014, la Oficina de Rendición de Cuentas del Gobierno de Estados Unidos (GAO) concluyó en el informe GAO-14-694 que los Centros de Servicios de Medicare y Medicaid (CMS), la entidad a cargo, emprendieron el desarrollo **sin una planeación ni una supervisión efectivas**: los requisitos no estaban definidos, faltaba la estrategia de adquisición exigida, no estaba claro quién administraba los contratos y no se usaron las herramientas de supervisión disponibles. Según la cobertura del informe, el costo del portal había llegado a unos 840 millones de dólares a comienzos de 2014.
+
+**Qué falló, en el lenguaje de este taller.**
+
+| Elemento | Qué falló |
+|---|---|
+| Alcance (Visión) | Los requisitos seguían sin definirse mientras se construía: no había un "en alcance" y "fuera de alcance" estable sobre el cual trabajar. |
+| Persona de contacto y responsables (Ficha, sección VI) | No estaba claro quién decidía y quién supervisaba: la GAO encontró confusión en las responsabilidades de administración de los contratos. |
+| Gobierno del proyecto | Faltaba la estrategia de adquisición exigida y no se usaron las herramientas de supervisión disponibles: no había con qué comprobar, durante el proyecto, si se iba por buen camino. |
+
+**Preguntas para el análisis.**
+
+1. Escriba la sección "Alcance" de la Visión que habría necesitado HealthCare.gov en 2012. ¿Qué habría puesto en "fuera de alcance" para llegar a tiempo al 1 de octubre de 2013?
+2. ¿Qué habría cambiado si la Ficha hubiera tenido una persona de contacto con autoridad clara para decidir? ¿Quién es esa persona en su cliente real?
+3. Escriba un principio arquitectónico (nombre, declaración, implicación) que habría descartado salir al aire sin pruebas completas del sistema.
+
+**Fuentes.** [GAO-14-694, "Healthcare.gov: Ineffective Planning and Oversight Practices Underscore the Need for Improved Contract Management" (julio de 2014)](https://www.gao.gov/products/gao-14-694); [ABC News, sobre las notas internas del primer día](https://abcnews.com/blogs/politics/2013/10/memo-reveals-only-6-people-signed-up-for-obamacare-on-first-day); [FedWeek, resumen del informe de la GAO](https://www.fedweek.com/fedweek-information-technology/gao-faults-planning-oversight-in-healthcare-gov-assessment/). El sitio de la GAO no se pudo consultar directamente al preparar esta guía; los datos del informe se tomaron de fuentes que lo citan. Las cifras de inscripciones del primer día varían según el documento.
+
+### D.2 Panorama tecnológico: dónde se documenta y se gobierna la arquitectura
+
+La Ficha y la Visión de este curso viven en Markdown dentro de GitHub. En una organización, ese mismo contenido suele vivir en una herramienta de arquitectura empresarial. Conocerlas ayuda a recomendarle al cliente dónde mantener lo que el equipo entregue.
+
+| Tipo | Ejemplos | Conviene cuando | Tenga en cuenta |
+|---|---|---|---|
+| Modelador ArchiMate de escritorio | Archi | Una organización pequeña o un equipo que empieza; es gratuito y de código abierto, y es la herramienta del curso | Es una herramienta de modelado, no un repositorio compartido con flujos de aprobación |
+| Suite de modelado multinotación | Sparx Systems Enterprise Architect | Se necesita ArchiMate, BPMN y UML en un mismo modelo | Licencia comercial; curva de aprendizaje alta |
+| Plataforma de arquitectura empresarial | BiZZdesign, MEGA HOPEX | Organizaciones grandes con un área de arquitectura y requisitos de gobierno, riesgo y cumplimiento | Costo y esfuerzo de implantación altos |
+| Gestión del portafolio de aplicaciones (SaaS) | LeanIX, Ardoq | Se quiere un inventario vivo de aplicaciones y capacidades, mantenido entre varias áreas | Suscripción anual; los datos quedan en la nube del proveedor |
+| Repositorio y colaboración | GitHub o GitLab (documentos versionados), Confluence o Notion (wikis), Miro o Mural (talleres con el cliente) | Documentar y discutir con historial, revisión y comentarios | No validan la notación ni la consistencia del modelo |
+
+La recomendación de herramienta también es una decisión de arquitectura: tiene que respetar las restricciones de la Ficha. En el caso de Fundación Salud Viva, por ejemplo, una herramienta que no opere en la nube choca con la restricción de "nube pública o híbrida".
+
+### D.3 Aplicarlo al cliente real
+
+1. Busque un caso público y documentado de un proyecto de tecnología con alcance, objetivos o responsables mal definidos, preferiblemente del sector del cliente.
+2. Analícelo con la [plantilla de análisis de caso](../plantillas/plantilla_analisis_caso.md) y guárdelo en `entrega/analisis-caso.md`.
+3. En la sección 5 de la plantilla, compare dos herramientas del panorama anterior para mantener la arquitectura del cliente después del curso, teniendo en cuenta sus restricciones (sección V de la Ficha).
+
+---
+
 _Esta guía hace parte del Taller 0 de Preliminary y Architecture Vision — curso Arquitectura Empresarial, Universidad de La Sabana._

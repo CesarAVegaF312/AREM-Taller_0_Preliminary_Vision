@@ -78,6 +78,14 @@ Antes del cierre del Corte 1, el equipo debe:
 
 ---
 
+## Validación técnica, análisis de casos y tecnología (opcional)
+
+Desde este primer taller, el equipo puede dejar listo el repositorio donde trabajará todo el semestre (con la estructura de [AREM-Proyecto-Cliente](https://github.com/CesarAVegaF312/AREM-Proyecto-Cliente)) y verificar la Ficha y la Visión con un comando antes de entregarlas: el verificador revisa que no queden campos sin llenar, que cada beneficio apunte a un objetivo de la Ficha, que haya de 5 a 8 capacidades sin nombre de sistema y 3 principios completos. No es un ejercicio de programación: el verificador y un ejemplo diligenciado de Fundación Salud Viva ya están listos en [`clase/validacion-tecnica/`](clase/validacion-tecnica/). El procedimiento está en la [Parte C de la guía paso a paso](clase/guia_paso_a_paso_preliminary_vision.md#parte-c--ambiente-del-equipo-y-validación-técnica-de-la-entrega-opcional).
+
+**Análisis de caso real y tecnología.** La [Parte D de la guía](clase/guia_paso_a_paso_preliminary_vision.md#parte-d--análisis-de-caso-real-y-panorama-tecnológico-opcional) analiza el lanzamiento fallido de HealthCare.gov (2013), que la GAO atribuyó a requisitos sin definir y a una planeación y supervisión deficientes, y presenta el panorama de herramientas para documentar y gobernar la arquitectura. El equipo analiza un caso del sector de su cliente con la [plantilla de análisis de caso](plantillas/plantilla_analisis_caso.md) en `entrega/analisis-caso.md`.
+
+---
+
 ## Estructura esperada del repositorio
 
 ```text
