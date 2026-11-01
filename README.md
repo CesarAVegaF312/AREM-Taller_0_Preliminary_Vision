@@ -98,11 +98,13 @@ taller-00-preliminary-vision/
 ├── entrega/
 │   ├── ficha-caracterizacion.md                 # Ver plantillas/plantilla_ficha_caracterizacion.md
 │   ├── vision.md                                # Ver plantillas/plantilla_vision.md
+│   ├── analisis-caso.md                         # Opcional: ver plantillas/plantilla_analisis_caso.md
 │   └── referencias.md                           # Ver plantillas/plantilla_referencias.md
 └── plantillas/
     ├── plantilla_ficha_caracterizacion.md
     ├── plantilla_vision.md
     ├── plantilla_notas.md
+    ├── plantilla_analisis_caso.md
     └── plantilla_referencias.md
 ```
 
